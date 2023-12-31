@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 
@@ -14,7 +17,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     RadioButtonModule,
     ButtonModule,
     DialogModule,
-    InputTextModule
+    InputTextModule,
+    InputNumberModule,
+    DividerModule,
+    CardModule
   ],
  
 })

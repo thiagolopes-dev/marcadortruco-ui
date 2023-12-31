@@ -2,69 +2,136 @@
 </div> -->
 
 
-<!-- <div class="grid flex flex-wrap col-12 mt-5">
-
-    <div class="flex flex-column gap-3 ml-3">
-        <div *ngFor="let category of categories" class="field-checkbox">
-            <p-radioButton [inputId]="category.key" name="category" [value]="category"
-                [(ngModel)]="selectedCategory"></p-radioButton>
-            <label [for]="category.key" class="ml-2">{{ category.name }}</label>
-        </div>
-    </div>
-
-    <div class="flex flex-column gap-3 justify-content-end">
-        <div *ngFor="let category of categories" class="field-checkbox">
-            <p-radioButton [inputId]="category.key" name="category" [value]="category"
-                [(ngModel)]="selectedCategory"></p-radioButton>
-            <label [for]="category.key" class="ml-2">{{ category.name }}</label>
-        </div>
-    </div>
-</div> -->
-
 <div class="col-12 flex flex-wrap justify-content-center">
     <span class="font-bold text-2xl">Marcador de Truco</span>
 </div>
 
-
-<div class="grid">
+<!-- Versao 1 -->
+<!-- <div class="grid">
     <div class="col-6">
         <div class="text-center p-3 border-round-sm font-bold">
             <div class="col-6 w-full">
-                <p-button (click)="showdialogA()" styleClass="p-button-rounded w-full">{{nometimeA}}</p-button>
+                <p-button (click)="showdialogA()"
+                    styleClass="p-button-rounded p-button-secondary w-full">{{nometimeA}}</p-button>
             </div>
             <div class="ml-4">
-                <div class="flex-column gap-3">
-                    <div *ngFor="let pontoA of pontosA" class="field-checkbox">
-                        <p-radioButton class="custom-radio" [inputId]="pontoA.key" name="category" [value]="pontosA"
-                            [(ngModel)]="timeA"></p-radioButton>
-                        <label [for]="timeA.key" class="ml-2">{{ pontoA.name }}</label>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="text-center p-3 border-round-sm font-bold">
-            <div class="col-6 w-full">
-                <p-button styleClass="p-button-rounded w-full">{{nometimeB}}</p-button>
-            </div>
-            <div class="ml-4">
-                <div class="flex-column gap-3">
-                    <div *ngFor="let pontoB of pontosB" class="field-checkbox">
-                        <p-radioButton [inputId]="pontoB.key" name="category" [value]="pontosB"
-                            [(ngModel)]="timeB"></p-radioButton>
-                        <label [for]="timeB.key" class="ml-2">{{ pontoB.name }}</label>
+                <div class="flex flex-column gap-2">
+                    <div *ngFor="let timeA of pontosA" class="field-checkbox">
+                        <p-radioButton [inputId]="timeA.key" name="timeA" [value]="timeA"
+                            [(ngModel)]="selectedTimeA" (change)="onRadioChange($event)"></p-radioButton>
+                        <label [for]="timeA.key" class="ml-2">{{ timeA.name }}</label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="col-6">
+        <div class="text-center p-3 border-round-sm font-bold">
+            <div class="col-6 w-full">
+                <p-button (click)="showdialogB()"
+                    styleClass="p-button-rounded p-button-secondary w-full">{{nometimeB}}</p-button>
+            </div>
+            <div class="ml-4">
+                <div class="flex flex-column gap-2">
+                    <div *ngFor="let timeB of pontosB" class="field-checkbox">
+                        <p-radioButton [inputId]="timeB.key" name="timeB" [value]="timeB"
+                            [(ngModel)]="selectedTimeB"></p-radioButton>
+                        <label [for]="timeB.key" class="ml-2">{{ timeB.name }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<p-card>
+    <div class="grid col-12  mt-3">
+        <div class="flex justify-content-center w-full">
+            <p-button (click)="showdialogA()"
+            styleClass="p-button-rounded p-button-secondary w-full">{{nometimeA}}</p-button>
+        </div>
+       <div class="col-12 justify-content-center flex flex-wrap mt-5">
+        <p-inputNumber  [(ngModel)]="pontosA" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal"  [min]="0" [max]="12" (ngModelChange)="pontosTimeA()"
+        decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+       </div>
+    </div>
+    <div class="col-12 flex flex-wrap justify-content-center ">
+       <div class="col-12">
+        <span class="ml-2">Partidas Vencidas</span>
+       </div>
+        <div class="flex flex-wrap gap-3">
+            <div class="flex align-items-center">
+                <p-radioButton name="vencidasA" value="1" (change)="partidasVencidasA()" [(ngModel)]="vencidasA" inputId="vencida1"></p-radioButton>
+                <label for="vencida1" class="ml-2">1</label>
+            </div>
+            
+            <div class="flex align-items-center">
+                <p-radioButton name="vencidasA" value="2" (change)="partidasVencidasA()" [(ngModel)]="vencidasA" inputId="vencida2"></p-radioButton>
+                <label for="vencida2" class="ml-2">2</label>
+            </div>
+            
+            <div class="flex align-items-center">
+                <p-radioButton name="vencidasA" value="3" (change)="partidasVencidasA()" [(ngModel)]="vencidasA" inputId="vencida3"></p-radioButton>
+                <label for="vencida3" class="ml-2">3</label>
+            </div>
+        </div>
+    </div>
+</p-card>
+
+<p-divider></p-divider>
+
+<p-card>
+    <div class="grid  col-12  mt-3">
+        <div class="flex justify-content-center w-full">
+            <p-button (click)="showdialogB()"
+            styleClass="p-button-rounded p-button-secondary w-full">{{nometimeB}}</p-button>
+        </div>
+       <div class="col-12 justify-content-center flex flex-wrap mt-5">
+        <p-inputNumber  [(ngModel)]="valueB" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal"  [min]="0" [max]="12"
+        decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+       </div>
+    </div>
+    <div class="col-12 flex flex-wrap justify-content-center ">
+        <div class="col-12">
+         <span class="ml-2">Partidas Vencidas</span>
+        </div>
+         <div class="flex flex-wrap gap-3">
+             <div class="flex align-items-center">
+                 <p-radioButton name="vencidasB" value="1" [(ngModel)]="vencidasB" inputId="vencida4"></p-radioButton>
+                 <label for="vencida4" class="ml-2">1</label>
+             </div>
+             
+             <div class="flex align-items-center">
+                 <p-radioButton name="vencidasB" value="2" [(ngModel)]="vencidasB" inputId="vencida5"></p-radioButton>
+                 <label for="vencida5" class="ml-2">2</label>
+             </div>
+             
+             <div class="flex align-items-center">
+                 <p-radioButton name="vencidasB" value="3" [(ngModel)]="vencidasB" inputId="vencida6"></p-radioButton>
+                 <label for="vencida6" class="ml-2">3</label>
+             </div>
+         </div>
+     </div>
+</p-card>
 
 
-<p-dialog header="Header" [modal]="true" [(visible)]="dialogA">
+
+<p-dialog header="Nome Time" [modal]="true" [(visible)]="dialogA">
     <div class="flex flex-wrap col-12">
-        <input pInputText type="text" placeholder="Normal" [(ngModel)]="value2" />
+        <input pInputText type="text" placeholder="Digite o nome" [(ngModel)]="valuenomeA" />
+    </div>
+    <div class="flex flex-wrap col-12">
+        <p-button icon="pi pi-save" (click)="salvarNomeTimeA()" label="Salvar"
+            styleClass="p-button-rounded w-full"></p-button>
+    </div>
+</p-dialog>
+
+<p-dialog header="Nome Time" [modal]="true" [(visible)]="dialogB">
+    <div class="flex flex-wrap col-12">
+        <input pInputText type="text" placeholder="Digite o nome" [(ngModel)]="valueB" />
+    </div>
+    <div class="flex flex-wrap col-12">
+        <p-button icon="pi pi-save" (click)="salvarNomeTimeB()" label="Salvar"
+            styleClass="p-button-rounded w-full"></p-button>
     </div>
 </p-dialog>

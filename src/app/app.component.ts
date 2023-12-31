@@ -6,56 +6,72 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  timeA: any = null;
-  timeB: any = null;
+  
   nometimeA: string = 'Nós';
   nometimeB: string = 'Eles';
-  value2: string = '';
+  valuenomeA: string = ''
+  pontosA: string = '';
+  valueB: string = '';
+  vencidasA: string = '0';
+  vencidasB: string = '0';
 
   dialogA: boolean | undefined;
+  dialogB: boolean | undefined;
 
 
-  pontosA: any[] = [
-      { name: '0', key: '0' },
-      { name: '1', key: '1' },
-      { name: '2', key: '2' },
-      { name: '3', key: '3' },
-      { name: '4', key: '4' },
-      { name: '5', key: '5' },
-      { name: '6', key: '6' },
-      { name: '7', key: '7' },
-      { name: '8', key: '8' },
-      { name: '9', key: '9' },
-      { name: '10', key: '10' },
-      { name: '11', key: '11' },
-      { name: '12', key: '12' }
-  ];
-
-  pontosB: any[] = [
-    { name: '0', key: '0' },
-    { name: '1', key: '1' },
-    { name: '2', key: '2' },
-    { name: '3', key: '3' },
-    { name: '4', key: '4' },
-    { name: '5', key: '5' },
-    { name: '6', key: '6' },
-    { name: '7', key: '7' },
-    { name: '8', key: '8' },
-    { name: '9', key: '9' },
-    { name: '10', key: '10' },
-    { name: '11', key: '11' },
-    { name: '12', key: '12' }
-];
 
   ngOnInit() {
-    this.timeA = this.pontosA[0];
-    this.timeB = this.pontosB[0];
-}
+    // this.selectedTimeA = this.pontosA[0];
+    // this.selectedTimeB = this.pontosB[0];
+    this.getFromLocalStorage();
+  }
+
+  getFromLocalStorage(): void {
+    const storedValueA = localStorage.getItem('nomeTimeA');
+    const storedValueB = localStorage.getItem('nomeTimeB');
+    const valuePontosA = localStorage.getItem('partidasVencidasA')
+    if (storedValueA) {
+      this.nometimeA = storedValueA;
+    }
+    if (storedValueB) {
+      this.nometimeB = storedValueB;
+    }
+    if(valuePontosA){
+      this.pontosA = valuePontosA;
+    }
+  }
 
 
-    
-    
-showdialogA() {
-  this.dialogA = true;
-}
+  showdialogA() {
+    this.dialogA = true;
+  }
+
+  showdialogB() {
+    this.dialogB = true;
+  }
+
+  partidasVencidasA(){
+    localStorage.setItem('partidasVencidasA', this.vencidasA);
+  }
+
+  pontosTimeA(){
+    localStorage.setItem('pontosTimeA', this.pontosA);
+  }
+
+  salvarNomeTimeA() {
+    this.dialogA = false;
+    this.nometimeA = this.valuenomeA;
+    localStorage.setItem('nomeTimeA', this.valuenomeA);
+  }
+  salvarNomeTimeB() {
+    this.dialogB = false;
+    this.nometimeB = this.valueB;
+    localStorage.setItem('nomeTimeB', this.nometimeB);
+  }
+
+  onRadioChange(event: any): void {
+    const selectedValue = event.target.value;
+    console.log(event);
+    localStorage.setItem('PontosTimeA', selectedValue.key);
+  }
 }
