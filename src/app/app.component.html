@@ -1,137 +1,180 @@
-<!-- <div class="colorNav">
-</div> -->
-
-
-<div class="col-12 flex flex-wrap justify-content-center">
-    <span class="font-bold text-2xl">Marcador de Truco</span>
+<div class="flex justify-content-between flex-wrap">
+    <div class="flex align-items-center justify-content-center">
+        <p-chip class="text-1xl" label="Aplicativo Trucou"></p-chip>
+    </div>
+    <div class="flex align-items-center justify-content-center"></div>
+    <div class="flex align-items-center justify-content-center">
+        <p-button icon="pi pi-list" (click)="showDialogJogo()"
+            styleClass="p-button-rounded p-button-secondary"></p-button>
+    </div>
 </div>
 
-<!-- Versao 1 -->
-<!-- <div class="grid">
-    <div class="col-6">
-        <div class="text-center p-3 border-round-sm font-bold">
-            <div class="col-6 w-full">
-                <p-button (click)="showdialogA()"
-                    styleClass="p-button-rounded p-button-secondary w-full">{{nometimeA}}</p-button>
-            </div>
-            <div class="ml-4">
-                <div class="flex flex-column gap-2">
-                    <div *ngFor="let timeA of pontosA" class="field-checkbox">
-                        <p-radioButton [inputId]="timeA.key" name="timeA" [value]="timeA"
-                            [(ngModel)]="selectedTimeA" (change)="onRadioChange($event)"></p-radioButton>
-                        <label [for]="timeA.key" class="ml-2">{{ timeA.name }}</label>
+<div class="grid sm:mt-0 md:mt-8">
+    <div class="col-12 md:col-6 lg:col-6 align-content-center">
+        <div class="text-center">
+            <p-card styleClass="mt-1">
+                <div class="grid col-12">
+                    <div class="flex justify-content-center w-full">
+                        <p-button (click)="showdialogA()"
+                            styleClass="p-button-rounded p-button-primary w-full">{{nomeTimeA}}</p-button>
+                    </div>
+
+                    <div class="col-12 justify-content-center flex flex-wrap">
+                        <div class="flex align-content-center flex-wrap mr-4">
+                            <button pButton icon="pi pi-minus" [disabled]="pontosTimeA === 12" (click)="decrementA()"
+                                class="p-button-rounded p-button-secondary"></button>
+                        </div>
+                        <div class="flex align-content-center flex-wrap">
+                            <span class="font-bold text-8xl">{{pontosTimeA}}</span>
+                        </div>
+                        <div class="flex align-content-center flex-wrap ml-4">
+                            <button pButton icon="pi pi-plus" [disabled]="pontosTimeA === 12" (click)="incrementA()"
+                                class="p-button-rounded p-button-success"></button>
+                        </div>
+                    </div>
+
+                    <div class="col-12 flex flex-wrap justify-content-center">
+                        <span class="ml-2">Partidas Vencidas</span>
+                    </div>
+
+                    <div class="col-12 flex flex-wrap justify-content-center ">
+                        <span class="font-bold text-5xl">{{vencidasA}}</span>
                     </div>
                 </div>
-            </div>
+            </p-card>
         </div>
     </div>
-    <div class="col-6">
-        <div class="text-center p-3 border-round-sm font-bold">
-            <div class="col-6 w-full">
-                <p-button (click)="showdialogB()"
-                    styleClass="p-button-rounded p-button-secondary w-full">{{nometimeB}}</p-button>
-            </div>
-            <div class="ml-4">
-                <div class="flex flex-column gap-2">
-                    <div *ngFor="let timeB of pontosB" class="field-checkbox">
-                        <p-radioButton [inputId]="timeB.key" name="timeB" [value]="timeB"
-                            [(ngModel)]="selectedTimeB"></p-radioButton>
-                        <label [for]="timeB.key" class="ml-2">{{ timeB.name }}</label>
+    <div class="col-12 md:col-6 lg:col-6">
+        <div class="text-center">
+            <p-card styleClass="mt-1">
+                <div class="grid col-12">
+                    <div class="flex justify-content-center w-full">
+                        <p-button (click)="showdialogB()"
+                            styleClass="p-button-rounded p-button-primary w-full">{{nomeTimeB}}</p-button>
+                    </div>
+
+                    <div class="col-12 justify-content-center flex flex-wrap">
+                        <div class="flex align-content-center flex-wrap mr-4">
+                            <button pButton icon="pi pi-minus" (click)="decrementB()" [disabled]="pontosTimeB === 12"
+                                class="p-button-rounded p-button-secondary"></button>
+                        </div>
+                        <div class="flex align-content-center flex-wrap">
+                            <span class="font-bold text-8xl">{{pontosTimeB}}</span>
+                        </div>
+                        <div class="flex align-content-center flex-wrap ml-4">
+                            <button pButton icon="pi pi-plus" [disabled]="pontosTimeB === 12" (click)="incrementB()"
+                                class="p-button-rounded p-button-success"></button>
+                        </div>
+                    </div>
+
+                    <div class="col-12 flex flex-wrap justify-content-center">
+                        <span class="ml-2">Partidas Vencidas</span>
+                    </div>
+
+                    <div class="col-12 flex flex-wrap justify-content-center ">
+                        <span class="font-bold text-5xl">{{vencidasB}}</span>
                     </div>
                 </div>
-            </div>
+            </p-card>
         </div>
     </div>
-</div> -->
 
-<p-card>
-    <div class="grid col-12  mt-3">
-        <div class="flex justify-content-center w-full">
-            <p-button (click)="showdialogA()"
-            styleClass="p-button-rounded p-button-secondary w-full">{{nometimeA}}</p-button>
-        </div>
-       <div class="col-12 justify-content-center flex flex-wrap mt-5">
-        <p-inputNumber  [(ngModel)]="pontosA" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal"  [min]="0" [max]="12" (ngModelChange)="pontosTimeA()"
-        decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
-       </div>
+    <div class="col-12 flex flex-wrap justify-content-center align-content-center mb-0">
+        <span class="flex align-items-center justify-content-center">Desenvolvido por: <a
+                href="https://thiagolopesdev.com.br" target="_blank"><p-chip class="ml-2" label="Thiago Lopes"
+                    image="https://html-css-senac.vercel.app/projetos/thiago/avatar/thiagohlopess.jpeg"></p-chip></a></span>
     </div>
-    <div class="col-12 flex flex-wrap justify-content-center ">
-       <div class="col-12">
-        <span class="ml-2">Partidas Vencidas</span>
-       </div>
-        <div class="flex flex-wrap gap-3">
-            <div class="flex align-items-center">
-                <p-radioButton name="vencidasA" value="1" (change)="partidasVencidasA()" [(ngModel)]="vencidasA" inputId="vencida1"></p-radioButton>
-                <label for="vencida1" class="ml-2">1</label>
-            </div>
-            
-            <div class="flex align-items-center">
-                <p-radioButton name="vencidasA" value="2" (change)="partidasVencidasA()" [(ngModel)]="vencidasA" inputId="vencida2"></p-radioButton>
-                <label for="vencida2" class="ml-2">2</label>
-            </div>
-            
-            <div class="flex align-items-center">
-                <p-radioButton name="vencidasA" value="3" (change)="partidasVencidasA()" [(ngModel)]="vencidasA" inputId="vencida3"></p-radioButton>
-                <label for="vencida3" class="ml-2">3</label>
-            </div>
-        </div>
-    </div>
-</p-card>
 
-<p-divider></p-divider>
-
-<p-card>
-    <div class="grid  col-12  mt-3">
-        <div class="flex justify-content-center w-full">
-            <p-button (click)="showdialogB()"
-            styleClass="p-button-rounded p-button-secondary w-full">{{nometimeB}}</p-button>
-        </div>
-       <div class="col-12 justify-content-center flex flex-wrap mt-5">
-        <p-inputNumber  [(ngModel)]="valueB" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal"  [min]="0" [max]="12"
-        decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
-       </div>
-    </div>
-    <div class="col-12 flex flex-wrap justify-content-center ">
-        <div class="col-12">
-         <span class="ml-2">Partidas Vencidas</span>
-        </div>
-         <div class="flex flex-wrap gap-3">
-             <div class="flex align-items-center">
-                 <p-radioButton name="vencidasB" value="1" [(ngModel)]="vencidasB" inputId="vencida4"></p-radioButton>
-                 <label for="vencida4" class="ml-2">1</label>
-             </div>
-             
-             <div class="flex align-items-center">
-                 <p-radioButton name="vencidasB" value="2" [(ngModel)]="vencidasB" inputId="vencida5"></p-radioButton>
-                 <label for="vencida5" class="ml-2">2</label>
-             </div>
-             
-             <div class="flex align-items-center">
-                 <p-radioButton name="vencidasB" value="3" [(ngModel)]="vencidasB" inputId="vencida6"></p-radioButton>
-                 <label for="vencida6" class="ml-2">3</label>
-             </div>
-         </div>
-     </div>
-</p-card>
+</div>
 
 
 
-<p-dialog header="Nome Time" [modal]="true" [(visible)]="dialogA">
+
+<p-dialog header="Nome Time" [modal]="true" [(visible)]="dialogA" [style]="{width: '90vw'}">
     <div class="flex flex-wrap col-12">
-        <input pInputText type="text" placeholder="Digite o nome" [(ngModel)]="valuenomeA" />
+        <input class="w-full" pInputText type="text" placeholder="Digite o nome" [(ngModel)]="valueNomeA" />
     </div>
     <div class="flex flex-wrap col-12">
-        <p-button icon="pi pi-save" (click)="salvarNomeTimeA()" label="Salvar"
-            styleClass="p-button-rounded w-full"></p-button>
+        <button pButton pRipple icon="pi pi-save" label="Salvar" class="p-button-success p-button-rounded w-full"
+            (click)="salvarNomeTimeA()">
+        </button>
     </div>
 </p-dialog>
 
-<p-dialog header="Nome Time" [modal]="true" [(visible)]="dialogB">
+
+<p-dialog header="Nome Time" [modal]="true" [(visible)]="dialogB" [style]="{width: '90vw'}">
     <div class="flex flex-wrap col-12">
-        <input pInputText type="text" placeholder="Digite o nome" [(ngModel)]="valueB" />
+        <input class="w-full" pInputText type="text" placeholder="Digite o nome" [(ngModel)]="valueNomeB" />
     </div>
     <div class="flex flex-wrap col-12">
-        <p-button icon="pi pi-save" (click)="salvarNomeTimeB()" label="Salvar"
-            styleClass="p-button-rounded w-full"></p-button>
+        <button pButton pRipple icon="pi pi-save" label="Salvar" class="p-button-success p-button-rounded w-full"
+            (click)="salvarNomeTimeB()">
+        </button>
     </div>
 </p-dialog>
+
+<p-dialog header="Opções Jogo" [modal]="true" [(visible)]="dialogJogo" [style]="{width: '90vw'}">
+    <div class="col-12 flex flex-wrap justify-content-center  mt-2">
+        <button pButton pRipple icon="pi pi-replay" label="Reiniciar Partida"
+            class="p-button-secondary p-button-rounded w-full" (click)="confirmarNovaPartida()">
+        </button>
+    </div>
+    <p-divider></p-divider>
+    <div class="col-12 flex flex-wrap justify-content-center ">
+        <button pButton pRipple icon="pi pi-play" label="Reiniciar Jogo"
+            class="p-button-danger p-button-rounded w-full" (click)="confirmarNovoJogo()">
+        </button>
+    </div>
+    <p-divider></p-divider>
+    <div class="col-12 flex flex-wrap justify-content-center mt-4">
+        <button pButton pRipple icon="pi pi-mobile" label="Funcionalidades Trucou" (click)="funcionalidades = true"
+            class="p-button-outlined p-button-rounded p-button-primary w-full">
+        </button>
+    </div>
+</p-dialog>
+
+
+
+<p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle" #confirmacao>
+    <p-footer>
+        <button type="button" pButton pRipple icon="pi pi-check" label="Sim" (click)="confirmacao.accept()"
+            class="p-button-rounded p-button-success"></button>
+        <button type="button" pButton pRipple icon="pi pi-times" label="Não" (click)="confirmacao.reject()"
+            class="p-button-rounded p-button-secondary"></button>
+    </p-footer>
+</p-confirmDialog>
+
+
+<p-sidebar [(visible)]="funcionalidades" [fullScreen]="true">
+    <h3>Dicas de Funcionalidades</h3>
+
+    <div class="col-12">
+        <div class="col-12"><span>Botão Somatória de Pontos</span></div>
+        <button pButton icon="pi pi-plus" class="p-button-rounded p-button-success"></button>
+    </div>
+    <div class="col-12">
+        <span>Com este botão automaticamente ele faz a soma +1 nas partidas, e quando chegar no valor de
+            <strong>12</strong> ele soma automaticamente o valor de Partidas Vencidas +1</span>
+    </div>
+    <div class="col-12 font-bold">
+        Obrigatoriamente que tem chegar a 12 pontos, para somar automaticamente 1 partida Vencida
+    </div>
+
+    <p-divider></p-divider>
+    <div class="col-12"><span>Botão Reiniciar Partida</span></div>
+    <button pButton pRipple icon="pi pi-replay" label="Reiniciar Partida"
+        class="p-button-secondary p-button-rounded w-full">
+    </button>
+    <div class="col-12">
+        <span>Com este botão você reinicia os pontos, para uma nova partida, mantendo as Partidas
+            Vencidas intactas, famosa (perna)</span>
+    </div>
+    <p-divider></p-divider>
+    <div class="col-12"><span>Botão Reiniciar Jogo</span></div>
+    <button pButton pRipple icon="pi pi-play" label="Reiniciar Jogo" class="p-button-danger p-button-rounded w-full">
+    </button>
+    <div class="col-12">
+        <span>Com este botão você reinicia os Pontos e Partidas Vencidas para 0, iniciando totalmente um novo jogo</span>
+    </div>
+
+</p-sidebar>
